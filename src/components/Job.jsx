@@ -11,7 +11,8 @@ export default function Job({ jobData, onClickTag }) {
     >
       <div className="absolute -top-7 w-14 lg:relative lg:w-auto lg:top-0">
         <img
-          src={"./src/assets/" + jobData.logo}
+          //   src={"./src/assets/" + jobData.logo}
+          src={jobData.logo}
           alt={jobData.logo}
           className="rounded-full w-full"
         />
