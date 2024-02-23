@@ -1,4 +1,4 @@
-import image1 from "./assets/images/bg-header-desktop.svg";
+import image1 from "./assets/bg-header-desktop.svg";
 import ButtonPage from "./components/ButtonPage";
 import FilterBox from "./components/FilterBox";
 import Job from "./components/Job";
@@ -48,6 +48,23 @@ const App = () => {
       )
     );
   }, [selectedFilter]);
+
+  function filterJobData() {
+    let filtered = ['Backend', 'Fulllstack']
+    // Looping
+    // Apabila ada data yang memenuhi filter -> masukkan ke array filtered
+    jobListingData.forEach((job) => {
+      selectedFilter.forEach((filter) => {
+        if (job.role === filter || job.level === filter || job.languages.includes(filter)) {
+          // job 'Frontend'
+          filter = [...filter, job]
+          filter = ['Backend', 'Fullstack', 'Frontend']
+        }
+      })
+    })
+
+
+  }
 
   return (
     <>
