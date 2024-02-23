@@ -11,8 +11,8 @@ export default function Job({ jobData, onClickTag }) {
     >
       <div className="absolute -top-7 w-14 lg:relative lg:w-auto lg:top-0">
         <img
-          src={jobData.logo}
-          alt={"." + jobData.logo}
+          src={"./src/assets/" + jobData.logo}
+          alt={jobData.logo}
           className="rounded-full w-full"
         />
       </div>
@@ -50,14 +50,14 @@ export default function Job({ jobData, onClickTag }) {
         <div>
           <ul className="flex flex-wrap gap-4 border-t border-cyan-dark-grayish mt-4 pt-4 lg:border-0">
             <li>
-              <ButtonTag buttonText={jobData.role} onClickTag={onClickTag}/>
+              <ButtonTag buttonText={jobData.role} onClickTag={onClickTag} />
             </li>
             <li>
-              <ButtonTag buttonText={jobData.level} onClickTag={onClickTag}/>
+              <ButtonTag buttonText={jobData.level} onClickTag={onClickTag} />
             </li>
             {jobData.languages.map((language, index) => (
               <li key={index}>
-                <ButtonTag buttonText={language} onClickTag={onClickTag}/>
+                <ButtonTag buttonText={language} onClickTag={onClickTag} />
               </li>
             ))}
           </ul>

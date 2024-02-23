@@ -1,53 +1,59 @@
-import image1 from "../public/images/bg-header-desktop.svg";
+import image1 from "./assets/images/bg-header-desktop.svg";
+import ButtonPage from "./components/ButtonPage";
 import FilterBox from "./components/FilterBox";
 import Job from "./components/Job";
 import jobListingData from "./data/data.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const App = () => {
   const [selectedFilter, setSelectedFilter] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState(jobListingData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemPerPage = 5;
 
   const handleClickTag = (tag) => {
     if (!selectedFilter.includes(tag)) {
       setSelectedFilter((prevs) => [...prevs, tag]);
-      console.log(selectedFilter);
-      refreshList();
     }
   };
 
   const handleCloseFilter = (tag) => {
     setSelectedFilter((prevs) => prevs.filter((filter) => filter !== tag));
-    refreshList();
   };
 
   const handleClearFilter = () => {
     setSelectedFilter([]);
-    setFilteredJobs(jobListingData);
   };
 
-  function refreshList() {
+  const handleClickPage = (pageNumber) => {
+    if (pageNumber !== currentPage) {
+      setCurrentPage(pageNumber);
+    }
+  };
+
+  useEffect(() => {
+    setCurrentPage(1);
     if (selectedFilter.length === 0) {
       setFilteredJobs(jobListingData);
       return;
     }
     setFilteredJobs(
       jobListingData.filter((job) =>
-        selectedFilter.includes(
+        selectedFilter.every(
           (filter) =>
-            filter === job.role ||
-            filter === job.level ||
-            job.languages.includes((language) => language === filter)
+            job.role === filter ||
+            job.level === filter ||
+            job.languages.includes(filter)
         )
       )
     );
-  }
+  }, [selectedFilter]);
 
   return (
     <>
       <header
         className="bg-cyan-dark bg-no-repeat bg-cover h-44 bg-header-desktop"
-        style={{ background: image1 }}
+        style={{ backgroundImage: `url(${image1})` }}
       ></header>
       <main className="bg-cyan-light min-h-[80vh] pb-8 px-6">
         <div className="max-w-5xl m-auto relative -top-8 ">
@@ -60,22 +66,25 @@ const App = () => {
           )}
           <div>
             <ul>
-              {filteredJobs.map((job) => (
-                <Job jobData={job} key={job.id} onClickTag={handleClickTag} />
-              ))}
+              {filteredJobs
+                .slice((currentPage - 1) * 5, currentPage * 5)
+                .map((job) => (
+                  <Job jobData={job} key={job.id} onClickTag={handleClickTag} />
+                ))}
             </ul>
           </div>
           <nav className="mt-4">
             <ul className="flex justify-center">
-              <li>
-                <button
-                  className={`mx-1 px-6 py-4 rounded shadow 
-                          text-blue-500 bg-white
-                      }`}
-                >
-                  1
-                </button>
-              </li>
+              {[
+                ...Array(Math.ceil(filteredJobs.length / itemPerPage)).keys(),
+              ].map((num) => (
+                <ButtonPage
+                  pageNumber={num + 1}
+                  isActive={currentPage == num + 1}
+                  key={num}
+                  onClickIndex={handleClickPage}
+                />
+              ))}
             </ul>
           </nav>
         </div>
