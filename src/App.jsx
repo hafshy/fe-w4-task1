@@ -49,23 +49,6 @@ const App = () => {
     );
   }, [selectedFilter]);
 
-  function filterJobData() {
-    let filtered = ['Backend', 'Fulllstack']
-    // Looping
-    // Apabila ada data yang memenuhi filter -> masukkan ke array filtered
-    jobListingData.forEach((job) => {
-      selectedFilter.forEach((filter) => {
-        if (job.role === filter || job.level === filter || job.languages.includes(filter)) {
-          // job 'Frontend'
-          filter = [...filter, job]
-          filter = ['Backend', 'Fullstack', 'Frontend']
-        }
-      })
-    })
-
-
-  }
-
   return (
     <>
       <header
@@ -84,7 +67,7 @@ const App = () => {
           <div>
             <ul>
               {filteredJobs
-                .slice((currentPage - 1) * 5, currentPage * 5)
+                .slice((currentPage - 1) * itemPerPage, currentPage * itemPerPage)
                 .map((job) => (
                   <Job jobData={job} key={job.id} onClickTag={handleClickTag} />
                 ))}
