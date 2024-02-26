@@ -1,9 +1,7 @@
-import image1 from "../assets/bg-header-desktop.svg";
 import ButtonPage from "../components/ButtonPage";
 import FilterBox from "../components/FilterBox";
 import Job from "../components/Job";
 import { jsonData } from "../data/data.js";
-import jobListingData from "../data/data.json";
 import { useState, useEffect } from "react";
 
 const JobListingPage = () => {
@@ -11,6 +9,8 @@ const JobListingPage = () => {
   const [filteredJobs, setFilteredJobs] = useState(jsonData);
   const [currentPage, setCurrentPage] = useState(1);
   const itemPerPage = 10;
+
+  window.scrollTo(0, 0);
 
   const handleClickTag = (tag) => {
     if (!selectedFilter.includes(tag)) {

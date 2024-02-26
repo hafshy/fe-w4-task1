@@ -6,7 +6,8 @@ export default function JobDetailPage() {
   const { id } = useParams();
   const jobData = jsonData.find((job) => job.id == id);
   const navigate = useNavigate();
-
+  window.scrollTo(0, 0);
+  
   const handleApply = () => {
     window.alert("Thank You for your application");
     navigate("/jobs");
@@ -16,7 +17,7 @@ export default function JobDetailPage() {
     <div className="min-h-[80vh] relative">
       <div className="min-h-[80vh] bg-white rounded-lg shadow-lg p-10">
         <Link
-          to="/jobs"
+          to=".."
           className="absolute top-0 left-0 mt-4 ml-4 bg-cyan-dark hover:bg-cyan-very-dark text-white py-2 px-6 rounded-md"
         >
           Back
