@@ -8,7 +8,7 @@ const JobListingPage = () => {
   const [selectedFilter, setSelectedFilter] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState(jsonData);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemPerPage = 10;
+  const itemPerPage = 6;
 
   window.scrollTo(0, 0);
 
