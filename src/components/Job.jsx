@@ -1,17 +1,16 @@
 import React from "react";
 import ButtonTag from "./ButtonTag";
+import { Link } from "react-router-dom";
 
 export default function Job({ jobData, onClickTag }) {
   return (
     <li
-      className={
-        "relative bg-white p-7 rounded-md flex items-center gap-6 shadow-lg mb-12 lg:mb-6 " +
-        (jobData.featured ? "border-l-4 border-cyan-dark" : "")
-      }
+      className={`relative bg-white p-7 rounded-md flex items-center gap-6 shadow-lg mb-12 lg:mb-6 ${
+        jobData.featured ? "border-l-4 border-cyan-dark" : ""
+      }`}
     >
       <div className="absolute -top-7 w-14 lg:relative lg:w-auto lg:top-0">
         <img
-          //   src={"./src/assets/" + jobData.logo}
           src={jobData.logo}
           alt={jobData.logo}
           className="rounded-full w-full"
@@ -34,12 +33,12 @@ export default function Job({ jobData, onClickTag }) {
               </span>
             )}
           </div>
-          <a
-            href="#"
+          <Link
+            to={`${jobData.id}`}
             className="block my-1 text-base font-bold hover:text-cyan-dark"
           >
             {jobData.position}
-          </a>
+          </Link>
           <ul className="flex text-cyan-dark-grayish gap-4 text-sm font-medium">
             <li>{jobData.postedAt}</li>
             <li className="before:content-['•'] before:mr-3 after:content-['•'] after:ml-3">
