@@ -7,7 +7,7 @@ export default function JobDetailPage() {
   const jobData = jsonData.find((job) => job.id == id);
   const navigate = useNavigate();
   window.scrollTo(0, 0);
-  
+
   const handleApply = () => {
     window.alert("Thank You for your application");
     navigate("/jobs");
