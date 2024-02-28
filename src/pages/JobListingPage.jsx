@@ -58,12 +58,6 @@ const JobListingPage = () => {
     return (
         <>
             <main className="bg-cyan-light min-h-[80vh] pb-8 px-6">
-                <button
-                    onClick={handleLogout}
-                    className="bg-cyan-dark w-20 text-center px-2 py-1.5 text-sm text-cyan-light font-bold rounded-l-md  hover:bg-cyan-dark hover:text-white rounded-r-md cursor-pointer"
-                >
-                    Logout
-                </button>
                 <div className="max-w-5xl m-auto relative pt-8">
                     {selectedFilter.length > 0 && (
                         <FilterBox
@@ -73,6 +67,12 @@ const JobListingPage = () => {
                         />
                     )}
 
+                    <button
+                        onClick={handleLogout}
+                        className="bg-cyan-dark w-20 mb-10 text-center px-2 py-1.5 text-sm text-cyan-light font-bold rounded-l-md  hover:bg-cyan-dark hover:text-white rounded-r-md cursor-pointer"
+                    >
+                        Logout
+                    </button>
                     <div>
                         <ul>
                             {filteredJobs

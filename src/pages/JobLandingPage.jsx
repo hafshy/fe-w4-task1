@@ -9,17 +9,6 @@ export default function JobLandingPage() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        console.log("LOADED");
-    }, []);
-
-    // useEffect(() => {
-    //     if (isLoggedIn) {
-    //         console.log("LOGIN");
-    //         navigate("/");
-    //     }
-    // }, []);
-
     const handleLogin = async (e) => {
         e.preventDefault();
         setIsLoading(true);
@@ -33,10 +22,8 @@ export default function JobLandingPage() {
                 },
                 header
             );
-            console.log(response);
             if (response.code == 200) {
                 localStorage.setItem("isLogin", true);
-                console.log("success bro");
                 navigate("/");
             }
         } catch (error) {
@@ -49,45 +36,53 @@ export default function JobLandingPage() {
         <div className="min-h-screen bg-cyan-light relative overflow-hidden">
             <div className="absolute inset-0 bg-[#0f1e32] z-0"></div>
             <main className="flex flex-col items-center px-6 relative z-10 min-h-screen justify-center">
-                <form
-                    className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 backdrop-blur-sm"
-                    onSubmit={handleLogin}
-                >
-                    <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
-                            Username
-                            <input
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                type="text"
-                                value={username}
-                                placeholder="Username"
-                                autoComplete="username"
-                                onChange={(e) => setUsername(e.target.value)}
-                            />
-                        </label>
-                    </div>
-                    <div className="mb-6">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
-                            Password
-                            <input
-                                className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                                type="password"
-                                value={password}
-                                placeholder="******************"
-                                autoComplete="current-password"
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </label>
-                    </div>
-                    <div className="flex items-center justify-between">
-                        <button
-                            className="bg-blue-500 hover:bg-blue-700 text-black font-bold px-4 rounded focus:outline-none focus:shadow-outline w-full"
-                            type="submit"
-                        >
-                            Sign In
-                        </button>
-                    </div>
-                </form>
+                {isLoading ? (
+                    <h3>Loading...</h3>
+                ) : (
+                    <form
+                        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 backdrop-blur-sm"
+                        onSubmit={handleLogin}
+                    >
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">
+                                Username
+                                <input
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    type="text"
+                                    value={username}
+                                    placeholder="Username"
+                                    autoComplete="username"
+                                    onChange={(e) =>
+                                        setUsername(e.target.value)
+                                    }
+                                />
+                            </label>
+                        </div>
+                        <div className="mb-6">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">
+                                Password
+                                <input
+                                    className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                                    type="password"
+                                    value={password}
+                                    placeholder="******************"
+                                    autoComplete="current-password"
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
+                                />
+                            </label>
+                        </div>
+                        <div className="flex items-center justify-between">
+                            <button
+                                className="bg-blue-500 hover:bg-blue-700 text-black font-bold px-4 rounded focus:outline-none focus:shadow-outline w-full"
+                                type="submit"
+                            >
+                                Sign In
+                            </button>
+                        </div>
+                    </form>
+                )}
                 <p className="text-center text-white text-xs">
                     &copy;2024 Hafshy Yazid
                 </p>

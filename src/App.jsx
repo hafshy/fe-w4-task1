@@ -18,7 +18,6 @@ const App = () => {
     const [isAllowed, setIsAllowed] = useState(true);
 
     useEffect(() => {
-        console.log("check");
         if (!isLogin) {
             setIsAllowed(false);
         } else {
@@ -27,7 +26,6 @@ const App = () => {
 
         const interval = setInterval(() => {
             const isLogin = localStorage.getItem("isLogin");
-            console.log("interval");
             if (!isLogin) {
                 setIsAllowed(false);
             } else {
